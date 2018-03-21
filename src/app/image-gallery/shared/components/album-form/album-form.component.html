@@ -1,0 +1,20 @@
+<div [@dialog] *ngIf="visible" class="dialog">
+  <button (click)="close()" aria-label="Close" class="dialog__close-btn">X</button>
+
+  <form [formGroup]="albumForm">
+    <div class="form-group">
+      <h2>Create new album</h2>
+      <div class="form">
+        <label class="center-block">Title:
+          <input class="form-control" [(ngModel)]="albumTitle" formControlName="title">
+        </label>
+        <p class="input-error" *ngIf="albumForm.controls.title.hasError('required') && (albumForm.controls.title.dirty || submitAttempt)">* Title is required</p>
+      </div>
+
+    </div>
+    <div class="footer">
+      <button class="btn btn-exb" (click)="createAlbum()">Create album</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

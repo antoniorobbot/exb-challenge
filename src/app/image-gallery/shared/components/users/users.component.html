@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-header grey-bg">
+    <p class="card-title">Users</p>
+    <div class="dropdown">
+      <img class="sort-ico" src="../../assets/filter.svg" alt="filter">
+
+      <div class="dropdown-content">
+        <p>
+          <img class="sort-ico" src="../../assets/check.svg" alt="filter"> Name
+        </p>
+        <hr>
+        <ul>
+          <li (click)="changeOrder('asc')" [ngClass]="{'active': order=== 'asc'}">
+            <img class="sort-ico" src="../../assets/check.svg" alt="filter"> A-Z
+          </li>
+          <li (click)="changeOrder('desc')" [ngClass]="{'active': order=== 'desc'}">
+            <img class="sort-ico" src="../../assets/check.svg" alt="filter"> Z-A
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-options">
+      <form [formGroup]="form">
+        <input class="search-bar" formControlName="search" placeholder="Search users">
+      </form>
+    </div>
+
+  </div>
+
+  <div class="card-body">
+    <div class="user-list">
+      <div *ngFor="let user of users" class="user-item" [ngClass]="{'active': selectedUser === user}" (click)="selectUser($event, user)">
+        <div class="user-body">
+          <div class="user-image">
+          </div>
+          <div>
+            <p class="user-title bold"> Name</p>
+            <p class="user-title"> {{ user?.username }}</p>
+            <p class="user-title"> {{ user?.email }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

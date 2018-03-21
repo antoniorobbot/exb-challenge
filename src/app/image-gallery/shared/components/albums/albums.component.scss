@@ -1,0 +1,28 @@
+.album-list {
+    display: flex;
+    flex-flow: row wrap;
+    max-height: 20vh;
+    min-height: 20vh;
+    overflow: scroll;
+    padding: 10px;
+    .album-span {
+        display: grid;
+        cursor: pointer;
+        grid-template-columns: auto 30%;
+        background-color: rgba(153, 153, 153, 0.2);
+        border-radius: 2px;
+        margin: 4px;
+        padding: 8px 8px 4px 8px;
+    }
+    p {
+        font-size: 0.8rem;
+        font-family: Roboto;
+        color: rgba(0, 0, 0, 0.87);
+    }
+}
+
+.empty {
+    font-family: Roboto;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.54);
+}

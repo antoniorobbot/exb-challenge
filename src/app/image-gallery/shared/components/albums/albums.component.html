@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <div class="card-title-block">
+      <p class="card-title">Album</p>
+      <p class="card-sub-title">Drag and Drop to Photos section</p>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="album-list">
+      <div class="flex center">
+        <p class="empty" *ngIf="albums?.length === 0"> Select a user first</p>
+      </div>
+      <div class="album-span" *ngFor="let album of albums" dnd-draggable [dragEnabled]="true" [dragData]="album" (onDragSuccess)="removeAlbum($event, i)">
+        <p> {{ album?.title }}</p>
+        <p> {{ album?.photosLength || 0 }} photos</p>
+      </div>
+    </div>
+
+    <button class="btn-round fixed" *ngIf="userInput" (click)="showDialog = !showDialog">
+      <p>+</p>
+    </button>
+  </div>
+</div>
+
+<app-album-form [(userId)]="userInput" [(visible)]="showDialog">
+</app-album-form>

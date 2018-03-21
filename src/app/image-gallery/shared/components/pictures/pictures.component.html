@@ -1,0 +1,77 @@
+<div class="card">
+  <ng2-slim-loading-bar color="#26a9e0" height="4px"></ng2-slim-loading-bar>
+
+  <div class="card-header" dnd-droppable (onDropSuccess)="transferDataSuccess($event)">
+    <p class="card-title">{{ totalPhotos || 0}} Photos {{ pictures.length >0 ? 'from' : ''}}</p>
+    <div class="card-labels">
+      <div class="label" *ngFor="let album of albumsSelected">
+        {{album?.title}}
+        <p class="remove-label" (click)="removeAlbum(album.id)">X</p>
+      </div>
+    </div>
+
+    <div class="filter-block">
+      <div class="dropdown" *ngIf="pictures.length > 0">
+        <img class="sort-ico" src="../../assets/sort-left.svg" alt="filter">
+
+        <div class="dropdown-content">
+          <p>
+            <img class="sort-ico" src="../../assets/check.svg" alt="filter"> Name
+          </p>
+          <hr>
+          <ul>
+            <li (click)="changeOrder('asc')" [ngClass]="{'active': order=== 'asc'}">
+              <img class="sort-ico" src="../../assets/check.svg" alt="filter"> A-Z
+            </li>
+            <li (click)="changeOrder('desc')" [ngClass]="{'active': order=== 'desc'}">
+              <img class="sort-ico" src="../../assets/check.svg" alt="filter"> Z-A
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card-body">
+    <div class="pictures-list">
+      <div class="picture-item" *ngFor="let picture of pictures ">
+        <img class="picture-image" [src]="picture?.thumbnailUrl" alt="">
+        <p class="picture-title"> {{ picture?.title }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="pagination" *ngIf="pictures.length > 0">
+      <div>
+        <p class="inline">Images per page</p>
+        <select [(ngModel)]="limitPage" (change)="changeLimit()">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+        </select>
+
+      </div>
+
+      <div>
+        <p>
+          Images {{ page }} of {{ lastPage }}
+        </p>
+      </div>
+
+      <div>
+        <a *ngIf="page > 1" (click)="previousPage()">
+          <img class="sort-ico" src="../../assets/back.svg" alt="filter">
+        </a>
+        <a *ngIf="page !== lastPage" (click)="nextPage()">
+          <img class="sort-ico" src="../../assets/next.svg" alt="filter">
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+<div class="main-grid">
+  <div class="sidebar">
+    <app-users (userChanged)="userUpdatedEvent($event)">
+    </app-users>
+  </div>
+
+  <div class="main">
+    <app-albums [albumRemoved]="albumRemoved" [userInput]="userSelected">
+    </app-albums>
+
+    <app-pictures (removedAlbum)="albumRemovedEvent($event)">
+    </app-pictures>
+  </div>
+</div>
